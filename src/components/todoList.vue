@@ -10,7 +10,18 @@
         </form>
         <div class="list">
             <ul>
-                <li v-for="todo in todos" :key="todo.text">{{ todo.text }}</li>
+                <li v-for="todo in todos" :key="todo.text" v-on:click="toggleTodo(todo)">
+                    <input type="checkbox" :checked="todo.done">
+                    <label>
+                        <del v-if="todo.done">
+                            {{ todo.text }}
+                        </del>
+                        <span v-else>
+                            {{ todo.text }}
+                        </span>
+                    </label>
+                    <span v-on:click="deleteTodo(todo)" class="material-symbols-outlined">close</span>
+                </li>
             </ul>
         </div>
     </section>
@@ -31,7 +42,23 @@ export default {
                 done: false
             });
             this.currentTodo = "";
+        },
+        toggleTodo(todo) {
+            todo.done = !todo.done
+        },
+        deleteTodo(todo) {
+            this.todos = this.todos.filter(el => el.text !== todo.text);
         }
     }
 }
 </script>
+
+<style>
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+</style>
