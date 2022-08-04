@@ -1,8 +1,8 @@
 <template>
-    <section>
-        <div class="heading">
+    <section class="todo">
+        <header class="heading">
             <h1 class="heading__title">To-do List</h1>
-        </div>
+        </header>
         <form class="form">
             <label class="form__label">Today I need to:</label>
             <input v-model="currentTodo" class="form__input" type="text" size="30" required>
@@ -54,18 +54,44 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/_global.scss";
 
-@import "@/assets/styles/_variables.scss";
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
 
-    .material-symbols-outlined {
-        font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
+.todo {
+    background-color: $bg-color;
+
+    .heading {
+        display: flex;
+        justify-content: center;
+
+        .heading__title {
+            font-size: 2em;
+            font-family: 'Square Peg', cursive;
+        }
+    }
+
+    .form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2%;
+
+        .form__label {
+            flex: 1 1 100%;
+            text-align: center;
         }
 
-    .list {
-        color: $color;
+        .form__input {
+            row-gap: 10px;
+        }
+
     }
+}
 </style>
