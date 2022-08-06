@@ -6,7 +6,9 @@ $pink: #E29578;
 $light-pink: #FFDDD2;
 
 // Variables Colors
-$bg-color: $light;
+$bg-color: $light-blue;
+$bg-todo-color: $light;
+$title-color: $pink;
 
 // Medias
 $breakpoint-mobile: 456px;
@@ -24,3 +26,12 @@ $breakpoint-desktop: 1024px;
         @content;
     }
 }
+
+// icon 
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }

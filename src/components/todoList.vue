@@ -1,5 +1,5 @@
 <template>
-    <section class="todo">
+    <section class="container">
         <header class="heading">
             <h1 class="heading__title">To-do List</h1>
         </header>
@@ -10,7 +10,7 @@
         </form>
         <div class="list">
             <ul>
-                <li v-for="todo in todos" :key="todo.text" v-on:click="toggleTodo(todo)">
+                <li class="list__item" v-for="todo in todos" :key="todo.text" v-on:click="toggleTodo(todo)">
                     <input type="checkbox" :checked="todo.done">
                     <label>
                         <del v-if="todo.done">
@@ -56,24 +56,38 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_global.scss";
 
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
+body {
+    background-color: $bg-color;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    @include desktop {
+        min-height: 100vh;
+    }
 }
 
-.todo {
-    background-color: $bg-color;
+.container {
+    background-color: $bg-todo-color;
+    width: 95%;
+    height: auto;
+    min-height: 500px;
+    margin: 0 auto;
+    border-radius: 22px;
+    box-shadow: 4px 3px 7px 2px #00000040;
 
     .heading {
         display: flex;
         justify-content: center;
 
         .heading__title {
-            font-size: 2em;
+            font-size: 4em;
             font-family: 'Square Peg', cursive;
+            color: $title-color;
+            margin: 0;
+            padding: 0.5rem 0;
         }
     }
 
@@ -84,14 +98,60 @@ export default {
         gap: 2%;
 
         .form__label {
+            font-family: 'Indie Flower', cursive;
+            padding: 0.5rem 0;
+            font-weight: bold;
             flex: 1 1 100%;
             text-align: center;
         }
 
         .form__input {
             row-gap: 10px;
+            border: 2px solid $pink;
+            height: 3.5vh;
+            max-width: 200px;
         }
 
+        .form__button {
+            border: none;
+            background: none;
+            font-family: "Indie Flower", cursive;
+            font-size: 1rem;
+            font-weight: bold;
+
+            &:hover {
+                font-style: italic;
+                text-decoration: underline;
+            }
+        }
+
+    }
+
+    .list {
+        ul {
+            padding: 1.5rem 0;
+            max-width: 75%;
+            margin: 0 auto;
+
+            .list__item {
+                list-style: none;
+                display: flex;
+                justify-content: flex-start;
+                font-family: "Indie Flower", cursive;
+
+                span {
+                    font-weight: bold;
+                    font-size: 1rem;
+                    padding: 0 1rem 0 0.25rem;
+                }
+
+                label del {
+                    font-weight: bold;
+                    font-style: italic;
+                    padding: 0 1rem 0 0.25rem;
+                }
+            }
+        }
     }
 }
 </style>
