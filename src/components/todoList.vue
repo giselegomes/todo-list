@@ -12,6 +12,7 @@
             <ul>
                 <li class="list__item" v-for="todo in todos" :key="todo.text" v-on:click="toggleTodo(todo)">
                     <input type="checkbox" :checked="todo.done">
+                    <span class="checked"></span>
                     <label>
                         <del v-if="todo.done">
                             {{ todo.text }}
@@ -137,7 +138,9 @@ body {
                 list-style: none;
                 display: flex;
                 justify-content: flex-start;
+                align-items: center;
                 font-family: "Indie Flower", cursive;
+                cursor: pointer;
 
                 span {
                     font-weight: bold;
@@ -150,6 +153,25 @@ body {
                     font-style: italic;
                     padding: 0 1rem 0 0.25rem;
                 }
+
+                input[type=checkbox] {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+
+                .checked {
+                    width: 14px;
+                    height: 14px;
+                    border: 2px solid $blue;
+                    position: relative;
+                    padding: 0;
+                    border-radius: 4px;
+                }
+            }
+
+            li input:checked+.checked {
+                background-color: $blue;
             }
         }
     }
